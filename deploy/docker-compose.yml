@@ -1,0 +1,146 @@
+# SPDX-License-Identifier: Apache-2.0
+# Sampati local development environment
+# Run with: docker compose -f deploy/docker-compose.yml up -d
+
+services:
+  postgres:
+    image: cgr.dev/chainguard/postgres:latest
+    container_name: sampati-postgres
+    environment:
+      POSTGRES_DB: sampati
+      POSTGRES_USER: sampati
+      POSTGRES_PASSWORD: sampati-dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-rls.sql:/docker-entrypoint-initdb.d/init-rls.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sampati -d sampati"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: cgr.dev/chainguard/redis:latest
+    container_name: sampati-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # SeaweedFS as S3-compatible object store
+  seaweedfs:
+    image: docker.io/chrislusf/seaweedfs:latest
+    container_name: sampati-seaweedfs
+    command: ["server", "-dir=/data", "-filer", "-s3", "-master.port=9333", "-volume.port=9334", "-filer.port=8888", "-s3.port=9000", "-master.defaultReplication=000"]
+    ports:
+      - "9000:9000"   # S3 API
+      - "8888:8888"   # Filer UI
+      - "9333:9333"   # Master
+      - "9334:9334"   # Volume
+    volumes:
+      - seaweedfs_data:/data
+    environment:
+      # Pre-create the bucket on startup
+      WEED_S3_API_BUCKET: sampati-evidence
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9333/cluster/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mailpit:
+    image: docker.io/axllent/mailpit:latest
+    container_name: sampati-mailpit
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # Web UI
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8025/api/v1/info"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.api
+    container_name: sampati-api
+    environment:
+      SAMPATI_ENV: dev
+      SAMPATI_BASE_URL: http://localhost:8000
+      SAMPATI_DATABASE_URL: postgresql+asyncpg://sampati:sampati-dev@postgres:5432/sampati
+      SAMPATI_REDIS_URL: redis://redis:6379/0
+      SAMPATI_STORAGE_URL: http://seaweedfs:9000
+      SAMPATI_STORAGE_BUCKET: sampati-evidence
+      SAMPATI_KEY_MODE: local
+      SAMPATI_DEFAULT_LOCALE: en-IN
+      SAMPATI_TIMEZONE: Asia/Kolkata
+      SAMPATI_PLUGIN_SANDBOX: container
+      SAMPATI_AI_ENABLED: "false"
+      SAMPATI_LOG_LEVEL: debug
+      SAMPATI_SECRET_KEY: dev-secret-key-change-in-production
+      SAMPATI_SMTP_URL: smtp://mailpit:1025
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      seaweedfs:
+        condition: service_healthy
+      mailpit:
+        condition: service_healthy
+    volumes:
+      - ../apps/api:/app/apps/api:ro
+      - ../../packages:/app/packages:ro
+
+  worker:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.worker
+    container_name: sampati-worker
+    command: ["-m", "sampati_worker"]
+    environment:
+      SAMPATI_ENV: dev
+      SAMPATI_DATABASE_URL: postgresql+asyncpg://sampati:sampati-dev@postgres:5432/sampati
+      SAMPATI_REDIS_URL: redis://redis:6379/0
+      SAMPATI_STORAGE_URL: http://seaweedfs:9000
+      SAMPATI_STORAGE_BUCKET: sampati-evidence
+      SAMPATI_LOG_LEVEL: debug
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../apps/worker:/app/apps/worker:ro
+      - ../packages:/app/packages:ro
+
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: Dockerfile
+    container_name: sampati-web
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  seaweedfs_data:

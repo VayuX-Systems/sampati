@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: Apache-2.0
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+    open-pull-requests-limit: 10
+    labels: ["dependencies", "python"]
+    commit-message:
+      prefix: "chore(deps)"
+
+  - package-ecosystem: "pip"
+    directory: "/apps/api"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:30"
+    open-pull-requests-limit: 5
+    labels: ["dependencies", "python", "api"]
+
+  - package-ecosystem: "pip"
+    directory: "/apps/worker"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "05:00"
+    open-pull-requests-limit: 5
+    labels: ["dependencies", "python", "worker"]
+
+  - package-ecosystem: "pip"
+    directory: "/packages/core-domain"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "04:00"
+    labels: ["dependencies", "python", "core-domain"]
+
+  - package-ecosystem: "pip"
+    directory: "/packages/rules-engine"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "04:30"
+    labels: ["dependencies", "python", "rules-engine"]
+
+  - package-ecosystem: "pip"
+    directory: "/packages/ledger"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "05:00"
+    labels: ["dependencies", "python", "ledger"]
+
+  - package-ecosystem: "pip"
+    directory: "/packages/plugin-host"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "04:00"
+    labels: ["dependencies", "python", "plugin-host"]
+
+  - package-ecosystem: "pip"
+    directory: "/packages/extension-points"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "04:30"
+    labels: ["dependencies", "python", "extension-points"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+    labels: ["dependencies", "github-actions"]

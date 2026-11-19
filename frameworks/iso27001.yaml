@@ -1,0 +1,597 @@
+# SPDX-License-Identifier: Apache-2.0
+# ISO/IEC 27001:2022 Framework - Draft
+# This is Sampati's own wording with references to ISO/IEC 27001:2022 clauses
+# NOT a copy of the copyrighted ISO text
+
+id: iso27001
+name: "ISO/IEC 27001:2022"
+version: "2022.1.0"
+status: reviewed
+description: "Information security management systems - Requirements per ISO/IEC 27001:2022"
+source_url: "https://www.iso.org/standard/27001"
+requirements:
+  - id: "4.1"
+    title: "Context - Understanding the organisation and its context"
+    text: "The organisation shall determine external and internal issues relevant to its purpose and that affect its ability to achieve the intended outcome(s) of its information security management system."
+    category: "Context"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "4.1"
+
+  - id: "4.2"
+    title: "Context - Understanding needs and expectations of interested parties"
+    text: "The organisation shall determine interested parties relevant to the ISMS and their requirements."
+    category: "Context"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "4.2"
+
+  - id: "4.3"
+    title: "Context - Scope of the ISMS"
+    text: "The organisation shall determine the boundaries and applicability of the ISMS."
+    category: "Context"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "4.3"
+
+  - id: "5.1"
+    title: "Leadership - Policy"
+    text: "Top management shall establish an information security policy aligned with the organisation's strategic direction."
+    category: "Leadership"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "5.1"
+
+  - id: "5.2"
+    title: "Leadership - Roles and responsibilities"
+    text: "Top management shall assign and communicate roles and responsibilities for information security."
+    category: "Leadership"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "5.2"
+
+  - id: "6.1.1"
+    title: "Planning - Actions to address risks and opportunities"
+    text: "The organisation shall plan actions to address risks and opportunities for the ISMS."
+    category: "Planning"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "6.1.1"
+
+  - id: "6.1.2"
+    title: "Planning - Information security risk assessment"
+    text: "The organisation shall define and apply an information security risk assessment process."
+    category: "Planning"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "6.1.2"
+
+  - id: "6.1.3"
+    title: "Planning - Information security risk treatment"
+    text: "The organisation shall define and apply an information security risk treatment process."
+    category: "Planning"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "6.1.3"
+
+  - id: "6.2"
+    title: "Planning - Information security objectives and planning to achieve them"
+    text: "The organisation shall establish information security objectives at relevant functions and levels."
+    category: "Planning"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "6.2"
+
+  - id: "7.1"
+    title: "Support - Resources"
+    text: "The organisation shall determine and provide the resources needed for the ISMS."
+    category: "Support"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "7.1"
+
+  - id: "7.2"
+    title: "Support - Competence"
+    text: "The organisation shall determine necessary competence of persons doing work under its control that affects information security performance."
+    category: "Support"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "7.2"
+
+  - id: "7.3"
+    title: "Support - Awareness"
+    text: "Persons doing work under the organisation's control shall be aware of the information security policy and their contribution to the ISMS."
+    category: "Support"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "7.3"
+
+  - id: "7.4"
+    title: "Support - Communication"
+    text: "The organisation shall determine the need for internal and external communication relevant to the ISMS."
+    category: "Support"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "7.4"
+
+  - id: "7.5"
+    title: "Support - Documented information"
+    text: "The organisation's ISMS shall include documented information required by ISO/IEC 27001 and determined by the organisation."
+    category: "Support"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "7.5"
+
+  - id: "8.1"
+    title: "Operation - Operational planning and control"
+    text: "The organisation shall plan, implement and control the processes needed to meet ISMS requirements."
+    category: "Operation"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "8.1"
+
+  - id: "8.2"
+    title: "Operation - Information security risk assessment"
+    text: "The organisation shall perform information security risk assessments at planned intervals."
+    category: "Operation"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "8.2"
+
+  - id: "8.3"
+    title: "Operation - Information security risk treatment"
+    text: "The organisation shall implement the information security risk treatment plan."
+    category: "Operation"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "8.3"
+
+  - id: "9.1"
+    title: "Performance Evaluation - Monitoring, measurement, analysis and evaluation"
+    text: "The organisation shall evaluate the information security performance and the effectiveness of the ISMS."
+    category: "Performance Evaluation"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "9.1"
+
+  - id: "9.2"
+    title: "Performance Evaluation - Internal audit"
+    text: "The organisation shall conduct internal audits at planned intervals."
+    category: "Performance Evaluation"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "9.2"
+
+  - id: "9.3"
+    title: "Performance Evaluation - Management review"
+    text: "Top management shall review the ISMS at planned intervals."
+    category: "Performance Evaluation"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "9.3"
+
+  - id: "10.1"
+    title: "Improvement - Nonconformity and corrective action"
+    text: "The organisation shall react to nonconformities and take action to control and correct them."
+    category: "Improvement"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "10.1"
+
+  - id: "10.2"
+    title: "Improvement - Continual improvement"
+    text: "The organisation shall continually improve the suitability, adequacy, and effectiveness of the ISMS."
+    category: "Improvement"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "10.2"
+
+  # Annex A controls (selected key controls)
+  - id: "A.5.1"
+    title: "Organisational - Policies for information security"
+    text: "A set of policies for information security shall be defined, approved by management, published and communicated to employees and relevant interested parties."
+    category: "Annex A - Organisational"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.5.1"
+
+  - id: "A.5.2"
+    title: "Organisational - Information security roles and responsibilities"
+    text: "Information security roles and responsibilities shall be defined and allocated."
+    category: "Annex A - Organisational"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.5.2"
+
+  - id: "A.5.7"
+    title: "Organisational - Threat intelligence"
+    text: "Information related to information security threats shall be collected and analysed to produce threat intelligence."
+    category: "Annex A - Organisational"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.5.7"
+
+  - id: "A.5.9"
+    title: "Organisational - Inventory of information and other associated assets"
+    text: "An inventory of information and other associated assets shall be developed and maintained."
+    category: "Annex A - Organisational"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.5.9"
+
+  - id: "A.5.10"
+    title: "Organisational - Acceptable use of assets"
+    text: "Rules for acceptable use and procedures for handling information and other associated assets shall be identified, documented and implemented."
+    category: "Annex A - Organisational"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.5.10"
+
+  - id: "A.5.12"
+    title: "Organisational - Classification of information"
+    text: "Information shall be classified according to the information security needs of the organisation."
+    category: "Annex A - Organisational"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.5.12"
+
+  - id: "A.6.1"
+    title: "People - Screening"
+    text: "Background verification checks on all candidates for employment shall be carried out in accordance with relevant laws, regulations and ethics."
+    category: "Annex A - People"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.6.1"
+
+  - id: "A.6.3"
+    title: "People - Information security awareness, education and training"
+    text: "Employees and relevant interested parties shall receive appropriate information security awareness, education and training."
+    category: "Annex A - People"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.6.3"
+
+  - id: "A.7.1"
+    title: "Physical - Physical security perimeters"
+    text: "Security perimeters shall be defined and used to protect areas that contain information and other associated assets."
+    category: "Annex A - Physical"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.7.1"
+
+  - id: "A.8.1"
+    title: "Technological - User end point devices"
+    text: "Information stored on, processed by or accessible via user end point devices shall be protected."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.1"
+
+  - id: "A.8.2"
+    title: "Technological - Privileged access rights"
+    text: "The allocation and use of privileged access rights shall be restricted and managed."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.2"
+
+  - id: "A.8.3"
+    title: "Technological - Information access restriction"
+    text: "Access to information and other associated assets shall be restricted in accordance with the established topic-specific policy."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.3"
+
+  - id: "A.8.4"
+    title: "Technological - Access to source code"
+    text: "Read and write access to source code, development tools and software libraries shall be managed."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.4"
+
+  - id: "A.8.5"
+    title: "Technological - Secure authentication"
+    text: "Secure authentication technologies and procedures shall be implemented based on information security requirements."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.5"
+
+  - id: "A.8.6"
+    title: "Technological - Capacity management"
+    text: "The use of resources shall be monitored and adjusted to meet current and expected capacity requirements."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.6"
+
+  - id: "A.8.7"
+    title: "Technological - Protection against malware"
+    text: "Protection against malware shall be implemented and supported by user awareness."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.7"
+
+  - id: "A.8.8"
+    title: "Technological - Management of technical vulnerabilities"
+    text: "Information about technical vulnerabilities shall be obtained, evaluated and addressed."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.8"
+
+  - id: "A.8.9"
+    title: "Technological - Configuration management"
+    text: "Configuration of hardware, software, services and networks shall be established, documented, implemented, monitored and reviewed."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.9"
+
+  - id: "A.8.10"
+    title: "Technological - Information deletion"
+    text: "Information stored in information systems, devices or in any other storage media shall be deleted when no longer required."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.10"
+
+  - id: "A.8.11"
+    title: "Technological - Data masking"
+    text: "Data masking shall be used in accordance with the topic-specific policy for access to data."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.11"
+
+  - id: "A.8.12"
+    title: "Technological - Data leakage prevention"
+    text: "Data leakage prevention measures shall be implemented for systems and networks."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.12"
+
+  - id: "A.8.13"
+    title: "Technological - Information backup"
+    text: "Backup copies of information, software and system images shall be created and tested regularly."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.13"
+
+  - id: "A.8.14"
+    title: "Technological - Redundancy of information processing facilities"
+    text: "Information processing facilities shall be implemented with redundancy sufficient to meet availability requirements."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.14"
+
+  - id: "A.8.15"
+    title: "Technological - Logging"
+    text: "Logs recording activities, exceptions, faults and other relevant events shall be produced, stored, protected and analysed."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.15"
+
+  - id: "A.8.16"
+    title: "Technological - Monitoring activities"
+    text: "Networks, systems and applications shall be monitored for anomalous behaviour."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.16"
+
+  - id: "A.8.17"
+    title: "Technological - Clock synchronisation"
+    text: "Clocks of information processing systems shall be synchronised to agreed time sources."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.17"
+
+  - id: "A.8.18"
+    title: "Technological - Use of privileged utility programs"
+    text: "The use of utility programs that might be capable of overriding system controls shall be restricted and tightly controlled."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.18"
+
+  - id: "A.8.19"
+    title: "Technological - Installation of software on operational systems"
+    text: "Procedures shall be implemented for the installation of software on operational systems."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.19"
+
+  - id: "A.8.20"
+    title: "Technological - Networks security"
+    text: "Networks and network devices shall be secured, managed and controlled."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.20"
+
+  - id: "A.8.21"
+    title: "Technological - Security of network services"
+    text: "Security mechanisms, service levels and management requirements of network services shall be identified, implemented and monitored."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.21"
+
+  - id: "A.8.22"
+    title: "Technological - Segregation of networks"
+    text: "Groups of information services, users and information systems shall be segregated on networks."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.22"
+
+  - id: "A.8.23"
+    title: "Technological - Web filtering"
+    text: "Access to external websites shall be managed to reduce exposure to malicious content."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.23"
+
+  - id: "A.8.24"
+    title: "Technological - Use of cryptography"
+    text: "Rules for the effective use of cryptography shall be defined and implemented."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.24"
+
+  - id: "A.8.25"
+    title: "Technological - Secure development lifecycle"
+    text: "Rules for developing software and systems shall be established and applied."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.25"
+
+  - id: "A.8.26"
+    title: "Technological - Application security requirements"
+    text: "Information security requirements shall be identified, specified and approved when developing or acquiring applications."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.26"
+
+  - id: "A.8.27"
+    title: "Technological - Secure system architecture and engineering principles"
+    text: "Principles for secure engineering shall be established, documented, maintained and applied."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.27"
+
+  - id: "A.8.28"
+    title: "Technological - Secure coding"
+    text: "Secure coding principles shall be applied to software development."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.28"
+
+  - id: "A.8.29"
+    title: "Technological - Security testing in development and acceptance"
+    text: "Security testing processes shall be defined and implemented in the development lifecycle."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.29"
+
+  - id: "A.8.30"
+    title: "Technological - Outsourced software development"
+    text: "The organisation shall direct, monitor and review activities related to outsourced software development."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.30"
+
+  - id: "A.8.31"
+    title: "Technological - Separation of development, test and production environments"
+    text: "Development, test and production environments shall be separated and secured."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.31"
+
+  - id: "A.8.32"
+    title: "Technological - Change management"
+    text: "Changes to information processing facilities and information systems shall be subject to change management procedures."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.32"
+
+  - id: "A.8.33"
+    title: "Technological - Test information"
+    text: "Test information shall be appropriately selected, protected and managed."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.33"
+
+  - id: "A.8.34"
+    title: "Technological - Protection of information systems during audit testing"
+    text: "Audit tests and other assurance activities shall be planned and agreed between the tester and appropriate management."
+    category: "Annex A - Technological"
+    parent: null
+    references:
+      - source: "ISO/IEC 27001:2022"
+        clause: "A.8.34"

@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: Apache-2.0
+# India DPDP Pack - Draft
+# This is a draft starting hypothesis. Must be legally reviewed before release.
+
+id: in-dpdp
+name: India DPDP Pack
+version: 0.1.0
+country: IN
+regulator: Data Protection Board of India
+locale: [en-IN, hi-IN]
+sdk_protocol: v1
+frameworks: [frameworks/dpdp.yaml]
+controls: [controls/*.yaml]
+mappings: [mappings/iso27001.yaml]
+tests: [tests/*.yaml]
+workflows:
+  - id: breach-clock
+    file: workflows/breach.yaml
+review:
+  legal_reviewed: false
+  reviewed_by: null
+  reviewed_on: null

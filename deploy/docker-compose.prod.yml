@@ -1,0 +1,204 @@
+# SPDX-License-Identifier: Apache-2.0
+# Sampati production deployment
+# Run with: docker compose -f deploy/docker-compose.prod.yml up -d
+# Uses Chainguard (cgr.dev) and Docker Hub images
+
+services:
+  postgres:
+    image: cgr.dev/chainguard/postgres:latest
+    container_name: sampati-postgres
+    environment:
+      POSTGRES_DB: ${SAMPATI_DB_NAME:-sampati}
+      POSTGRES_USER: ${SAMPATI_DB_USER:-sampati}
+      POSTGRES_PASSWORD: ${SAMPATI_DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${SAMPATI_DB_USER:-sampati} -d ${SAMPATI_DB_NAME:-sampati}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
+
+  redis:
+    image: cgr.dev/chainguard/redis:latest
+    container_name: sampati-redis
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 128M
+
+  # SeaweedFS for production S3-compatible storage
+  seaweedfs:
+    image: docker.io/chrislusf/seaweedfs:latest
+    container_name: sampati-seaweedfs
+    command: >
+      server
+      -master.port=9333
+      -volume.port=9334
+      -filer.port=8888
+      -s3.port=9000
+      -filer.dir=/data/filer
+      -defaultReplication=001
+    ports:
+      - "9000:9000"
+      - "8888:8888"
+    volumes:
+      - seaweedfs_data:/data
+    environment:
+      WEED_S3_API_BUCKET: ${SAMPATI_STORAGE_BUCKET:-sampati-evidence}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 256M
+
+  mailpit:
+    image: docker.io/axllent/mailpit:latest
+    container_name: sampati-mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8025"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  api:
+    image: ghcr.io/vayux-systems/sampati-api:${SAMPATI_VERSION:-latest}
+    container_name: sampati-api
+    environment:
+      SAMPATI_ENV: prod
+      SAMPATI_BASE_URL: ${SAMPATI_BASE_URL}
+      SAMPATI_DATABASE_URL: postgresql+asyncpg://${SAMPATI_DB_USER:-sampati}:${SAMPATI_DB_PASSWORD}@postgres:5432/${SAMPATI_DB_NAME:-sampati}
+      SAMPATI_REDIS_URL: redis://redis:6379/0
+      SAMPATI_STORAGE_URL: http://seaweedfs:9000
+      SAMPATI_STORAGE_BUCKET: ${SAMPATI_STORAGE_BUCKET:-sampati-evidence}
+      SAMPATI_KEY_MODE: ${SAMPATI_KEY_MODE:-external}
+      SAMPATI_DEFAULT_LOCALE: en-IN
+      SAMPATI_TIMEZONE: Asia/Kolkata
+      SAMPATI_PLUGIN_SANDBOX: container
+      SAMPATI_AI_ENABLED: ${SAMPATI_AI_ENABLED:-false}
+      SAMPATI_AI_BASE_URL: ${SAMPATI_AI_BASE_URL}
+      SAMPATI_LOG_LEVEL: info
+      SAMPATI_SECRET_KEY: ${SAMPATI_SECRET_KEY}
+      SAMPATI_OIDC_ISSUER: ${SAMPATI_OIDC_ISSUER}
+      SAMPATI_OIDC_CLIENT_ID: ${SAMPATI_OIDC_CLIENT_ID}
+      SAMPATI_OIDC_CLIENT_SECRET: ${SAMPATI_OIDC_CLIENT_SECRET}
+      SAMPATI_SMTP_URL: smtp://mailpit:1025
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      seaweedfs:
+        condition: service_healthy
+      mailpit:
+        condition: service_healthy
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+
+  worker:
+    image: ghcr.io/vayux-systems/sampati-worker:${SAMPATI_VERSION:-latest}
+    container_name: sampati-worker
+    environment:
+      SAMPATI_ENV: prod
+      SAMPATI_DATABASE_URL: postgresql+asyncpg://${SAMPATI_DB_USER:-sampati}:${SAMPATI_DB_PASSWORD}@postgres:5432/${SAMPATI_DB_NAME:-sampati}
+      SAMPATI_REDIS_URL: redis://redis:6379/0
+      SAMPATI_STORAGE_URL: http://seaweedfs:9000
+      SAMPATI_STORAGE_BUCKET: ${SAMPATI_STORAGE_BUCKET:-sampati-evidence}
+      SAMPATI_LOG_LEVEL: info
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+  web:
+    image: ghcr.io/vayux-systems/sampati-web:${SAMPATI_VERSION:-latest}
+    container_name: sampati-web
+    environment:
+      NEXT_PUBLIC_API_URL: ${SAMPATI_BASE_URL}
+    ports:
+      - "3000:3000"
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+  nginx:
+    image: cgr.dev/chainguard/nginx:latest
+    container_name: sampati-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    depends_on:
+      - api
+      - web
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 64M
+
+volumes:
+  postgres_data:
+  redis_data:
+  seaweedfs_data:

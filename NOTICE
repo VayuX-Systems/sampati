@@ -1,0 +1,16 @@
+Sampati by VayuX
+Copyright 2026 VayuX Systems LLP
+
+This product includes software developed at VayuX Systems LLP (https://vayux.systems).
+
+The following components are included under their respective licenses:
+
+- Sampati SDK (MIT License) - Copyright 2026 VayuX Systems
+- Various third-party dependencies as listed in the SBOM
+
+This product uses the following open-source components (partial list):
+- Python, FastAPI, Pydantic, SQLAlchemy, Alembic
+- PostgreSQL, Redis, MinIO
+- React, Next.js, Tailwind CSS
+- Go (device agent)
+- And many others - see SBOM for complete list

@@ -1,0 +1,6 @@
+# Sampati Monorepo - Community Edition
+# Enterprise features are in sampati-enterprise repo
+
+packages:
+  - 'packages/*'
+  - 'apps/*'

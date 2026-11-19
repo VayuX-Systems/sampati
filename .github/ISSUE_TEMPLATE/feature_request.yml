@@ -1,0 +1,54 @@
+name: Feature Request
+description: Request a new feature for the Sampati platform
+title: "[FEAT] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please describe what you'd like and why.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this solve? Who is affected?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How should this work? Any specific UI/UX or API considerations?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Any other approaches you considered?
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description | Which area of the platform?
+      options:
+        - Foundation (tenancy, auth, audit)
+        - Compliance Engine (frameworks, controls, packs)
+        - Automation (plugins, connectors, tests)
+        - Programme Management (policies, risks, vendors)
+        - India Privacy/Incident (DPDP, CERT-In)
+        - Assurance (auditor portal, trust centre)
+        - Platform Operations (deployment, API, billing)
+        - SDK / Plugin Ecosystem
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have checked the roadmap (SAMPATI-BIBLE.md section 16)
+        - label: This aligns with the product principles (section 1.5)
+        - label: I am willing to contribute implementation

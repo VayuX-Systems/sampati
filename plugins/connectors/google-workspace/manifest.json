@@ -1,0 +1,71 @@
+{
+  "id": "google-workspace",
+  "name": "Google Workspace Connector",
+  "type": "connector",
+  "version": "1.0.0",
+  "protocol": "v1",
+  "licence": "Apache-2.0",
+  "description": "Collects evidence from Google Workspace (user accounts, MFA, groups, Drive)",
+  "author": "VayuX Systems",
+  "homepage": "https://github.com/VayuX-Systems/sampati",
+  "permissions": {
+    "network_allowlist": ["www.googleapis.com", "oauth2.googleapis.com"],
+    "scopes": [
+      "https://www.googleapis.com/auth/admin.directory.user.readonly",
+      "https://www.googleapis.com/auth/admin.directory.group.readonly",
+      "https://www.googleapis.com/auth/admin.directory.orgunit.readonly",
+      "https://www.googleapis.com/auth/drive.metadata.readonly"
+    ]
+  },
+  "config": [
+    {
+      "key": "customer_id",
+      "label": "Google Workspace Customer ID",
+      "type": "string",
+      "required": true,
+      "description": "Google Workspace customer ID (e.g., C0xxxxx or my_domain.com)"
+    },
+    {
+      "key": "service_account_key",
+      "label": "Service Account Key JSON",
+      "type": "secret",
+      "required": true,
+      "description": "Service account key with domain-wide delegation"
+    },
+    {
+      "key": "admin_email",
+      "label": "Admin Email for Impersonation",
+      "type": "string",
+      "required": true,
+      "description": "Super admin email to impersonate for API calls"
+    }
+  ],
+  "produces": [
+    {
+      "check": "user_mfa_status",
+      "supports_controls": ["CTRL-ACCESS-001", "CTRL-ACCESS-002"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "suspended_users",
+      "supports_controls": ["CTRL-ACCESS-003"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "admin_privileges",
+      "supports_controls": ["CTRL-ACCESS-004"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "drive_sharing_settings",
+      "supports_controls": ["CTRL-DATA-001"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "group_memberships",
+      "supports_controls": ["CTRL-ACCESS-005"],
+      "schedule_default": "daily"
+    }
+  ],
+  "schedule_default": "daily"
+}

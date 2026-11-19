@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: Apache-2.0
+# DPDP Breach Response Controls
+
+- id: CTRL-DPDP-BR-001
+  title: "Breach Detection and Assessment"
+  description: "Processes exist to detect, assess, and classify personal data breaches promptly."
+  category: "Breach Response"
+  guidance: |
+    Implement:
+    - Monitoring for anomalous access patterns
+    - Breach classification criteria (severity, data types, affected individuals)
+    - Escalation procedures
+    - 24/7 incident response capability
+
+- id: CTRL-DPDP-BR-002
+  title: "Board Notification within Prescribed Time"
+  description: "Personal data breaches are notified to the Data Protection Board of India within the time specified in the DPDP Rules."
+  category: "Breach Response"
+  guidance: |
+    - Track breach discovery time
+    - Prepare notification template with required fields
+    - Submit notification within prescribed deadline
+    - Maintain notification records
+
+- id: CTRL-DPDP-BR-003
+  title: "Affected Data Principal Notification"
+  description: "Affected Data Principals are notified of breaches likely to cause harm, in the manner prescribed by the Rules."
+  category: "Breach Response"
+  guidance: |
+    - Assess likelihood of harm
+    - Notify in clear, plain language
+    - Include: nature of breach, likely consequences, mitigation steps, contact details
+    - Document notification timeline
+
+- id: CTRL-DPDP-BR-004
+  title: "Annual Breach Response Drill"
+  description: "An annual breach response drill is conducted and documented."
+  category: "Breach Response"
+  guidance: |
+    - Simulate a personal data breach scenario
+    - Test detection, assessment, notification, and recovery
+    - Document lessons learned
+    - Update procedures based on findings

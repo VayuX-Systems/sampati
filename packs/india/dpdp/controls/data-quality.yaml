@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: Apache-2.0
+# DPDP Data Quality Controls
+
+- id: CTRL-DPDP-DQ-001
+  title: "Personal Data Accuracy and Completeness"
+  description: "Reasonable efforts are made to ensure personal data is accurate, complete, and consistent with the purpose of processing."
+  category: "Data Quality"
+  guidance: |
+    Implement:
+    - Data validation at collection point
+    - Periodic data quality checks
+    - Correction workflows for identified inaccuracies
+    - Audit trail of corrections
+
+- id: CTRL-DPDP-DQ-002
+  title: "Data Retention Policy Enforced"
+  description: "Personal data is retained only as long as necessary for the specified purpose and erased thereafter unless legally required."
+  category: "Retention and Erasure"
+  guidance: |
+    For each data category:
+    - Define retention period with legal basis
+    - Automated erasure or anonymisation workflows
+    - Exception process for legal holds
+    - Audit trail of erasures
+
+- id: CTRL-DPDP-DQ-003
+  title: "Erasure on Consent Withdrawal"
+  description: "Personal data is erased within a reasonable time when consent is withdrawn, unless retention is required by law."
+  category: "Retention and Erasure"
+  guidance: |
+    - Link consent withdrawal to erasure workflow
+    - Define "reasonable time" (suggested: 30 days)
+    - Document exceptions for legal obligations
+    - Verify erasure across all systems and backups

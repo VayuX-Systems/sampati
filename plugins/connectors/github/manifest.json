@@ -1,0 +1,72 @@
+{
+  "id": "github",
+  "name": "GitHub Connector",
+  "type": "connector",
+  "version": "1.0.0",
+  "protocol": "v1",
+  "licence": "Apache-2.0",
+  "description": "Collects evidence from GitHub repositories and organization settings",
+  "author": "VayuX Systems",
+  "homepage": "https://github.com/VayuX-Systems/sampati",
+  "permissions": {
+    "network_allowlist": ["api.github.com"],
+    "scopes": ["read:org", "read:repo_metadata", "read:repo_hook"]
+  },
+  "config": [
+    {
+      "key": "organization",
+      "label": "GitHub Organization",
+      "type": "string",
+      "required": true,
+      "description": "GitHub organization name"
+    },
+    {
+      "key": "token",
+      "label": "Personal Access Token",
+      "type": "secret",
+      "required": true,
+      "description": "GitHub PAT with read:org, read:repo_metadata scopes"
+    },
+    {
+      "key": "include_private",
+      "label": "Include Private Repositories",
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Whether to collect evidence from private repos"
+    }
+  ],
+  "produces": [
+    {
+      "check": "branch_protection_enabled",
+      "supports_controls": ["CTRL-CODE-001", "CTRL-CODE-002"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "required_reviews_enforced",
+      "supports_controls": ["CTRL-CODE-003"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "signed_commits_required",
+      "supports_controls": ["CTRL-CODE-004"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "dependabot_enabled",
+      "supports_controls": ["CTRL-CODE-005"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "secret_scanning_enabled",
+      "supports_controls": ["CTRL-CODE-006"],
+      "schedule_default": "daily"
+    },
+    {
+      "check": "mfa_enforced_for_members",
+      "supports_controls": ["CTRL-ACCESS-002"],
+      "schedule_default": "daily"
+    }
+  ],
+  "schedule_default": "daily"
+}

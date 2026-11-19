@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: Apache-2.0
+# CERT-In Pack - Draft
+# Based on CERT-In directions issued 28 April 2022
+# Must be legally reviewed before release.
+
+id: in-cert-in
+name: India CERT-In Pack
+version: 0.1.0
+country: IN
+regulator: CERT-In (Indian Computer Emergency Response Team)
+locale: [en-IN, hi-IN]
+sdk_protocol: v1
+frameworks: [frameworks/cert-in.yaml]
+controls: [controls/*.yaml]
+mappings: [mappings/iso27001.yaml]
+tests: [tests/*.yaml]
+workflows:
+  - id: incident-six-hour
+    file: workflows/incident-six-hour.yaml
+review:
+  legal_reviewed: false
+  reviewed_by: null
+  reviewed_on: null

@@ -1,0 +1,196 @@
+# SPDX-License-Identifier: Apache-2.0
+# DPDP Act 2023 + DPDP Rules 2025 Framework - Draft
+# This is Sampati's own wording with references to the Act and Rules
+# NOT a copy of the copyrighted government text
+
+id: dpdp
+name: "DPDP Act 2023 / DPDP Rules 2025"
+version: "2025.1.0"
+status: draft
+description: "Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025 - India's personal data protection law"
+source_url: "https://www.meity.gov.in/digital-personal-data-protection-act-2023"
+requirements:
+  # Chapter II: Obligations of Data Fiduciary
+  - id: "4.1"
+    title: "Lawful Processing - Consent or Legitimate Use"
+    text: "Personal data shall be processed only for a lawful purpose for which the Data Principal has given consent or for certain legitimate uses specified in the Act."
+    category: "Lawful Processing"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 4"
+
+  - id: "4.2"
+    title: "Notice at Time of Consent"
+    text: "At the time of seeking consent, the Data Fiduciary shall give the Data Principal a notice containing the personal data to be processed, the purpose, and the rights of the Data Principal."
+    category: "Notice and Consent"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 5"
+
+  - id: "4.3"
+    title: "Consent Withdrawal"
+    text: "The Data Principal shall have the right to withdraw consent at any time, and it shall be as easy to withdraw as to give. The Data Fiduciary shall cease processing within a reasonable time."
+    category: "Notice and Consent"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 6"
+
+  - id: "4.4"
+    title: "Consent Manager"
+    text: "A Data Principal may give, manage, review, or withdraw consent through a Consent Manager registered with the Board."
+    category: "Notice and Consent"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 7"
+
+  - id: "5.1"
+    title: "Data Accuracy and Completeness"
+    text: "The Data Fiduciary shall make reasonable efforts to ensure personal data is accurate, complete, and consistent with the purpose for which it is processed."
+    category: "Data Quality"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 8(1)"
+
+  - id: "5.2"
+    title: "Data Retention and Erasure"
+    text: "Personal data shall be retained only as long as necessary for the specified purpose. It shall be erased when the purpose is no longer served or consent is withdrawn, unless retention is required by law."
+    category: "Retention and Erasure"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 8(2)"
+
+  - id: "5.3"
+    title: "Security Safeguards"
+    text: "The Data Fiduciary shall implement appropriate technical and organisational measures to protect personal data against unauthorised access, alteration, disclosure, or destruction."
+    category: "Security Safeguards"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 8(3)"
+
+  - id: "5.4"
+    title: "Breach Notification"
+    text: "In the event of a personal data breach, the Data Fiduciary shall notify the Board and each affected Data Principal in the manner and within the time specified by the Rules."
+    category: "Breach Response"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 8(4)"
+
+  - id: "5.5"
+    title: "Data Protection Impact Assessment"
+    text: "Significant Data Fiduciaries shall carry out Data Protection Impact Assessments and periodic audits as specified by the Rules."
+    category: "Governance"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 10"
+
+  - id: "5.6"
+    title: "Data Protection Officer"
+    text: "Significant Data Fiduciaries shall appoint a Data Protection Officer based in India who represents the Data Fiduciary."
+    category: "Governance"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 10"
+
+  - id: "5.7"
+    title: "Children's Data - Verifiable Parental Consent"
+    text: "Before processing personal data of a child or person with disability, the Data Fiduciary shall obtain verifiable consent of the parent or lawful guardian."
+    category: "Children's Data"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 9"
+
+  - id: "5.8"
+    title: "Children's Data - No Behavioural Monitoring"
+    text: "The Data Fiduciary shall not undertake behavioural monitoring, tracking, or targeted advertising directed at children."
+    category: "Children's Data"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 9"
+
+  # Data Principal Rights (Chapter III)
+  - id: "6.1"
+    title: "Right to Access Information"
+    text: "The Data Principal has the right to obtain from the Data Fiduciary confirmation of whether personal data is being processed, and access to such data with details of processing activities."
+    category: "Data Principal Rights"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 11"
+
+  - id: "6.2"
+    title: "Right to Correction and Erasure"
+    text: "The Data Principal has the right to request correction of inaccurate data and erasure of data no longer necessary for the purpose."
+    category: "Data Principal Rights"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 12"
+
+  - id: "6.3"
+    title: "Right to Grievance Redressal"
+    text: "The Data Principal has the right to readily available means of grievance redressal, with the Data Fiduciary responding within the time specified by the Rules."
+    category: "Data Principal Rights"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 13"
+
+  - id: "6.4"
+    title: "Right to Nominate"
+    text: "The Data Principal has the right to nominate another person to exercise their rights in the event of death or incapacity."
+    category: "Data Principal Rights"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 14"
+
+  # Significant Data Fiduciary obligations
+  - id: "10.1"
+    title: "Significant Data Fiduciary - DPIA"
+    text: "Significant Data Fiduciaries shall conduct Data Protection Impact Assessments as prescribed."
+    category: "Significant Data Fiduciary"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 10"
+
+  - id: "10.2"
+    title: "Significant Data Fiduciary - Periodic Audit"
+    text: "Significant Data Fiduciaries shall conduct periodic audits as prescribed."
+    category: "Significant Data Fiduciary"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 10"
+
+  # Cross-border transfers
+  - id: "11.1"
+    title: "Cross-Border Transfers - Central Government Power"
+    text: "The Central Government may restrict transfer of personal data to certain countries by notification."
+    category: "Cross-Border Transfers"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 16"
+
+  # Penalties
+  - id: "17.1"
+    title: "Penalties - Up to ₹250 Crore"
+    text: "The Board may impose penalties up to ₹250 crore for significant non-compliance."
+    category: "Penalties"
+    parent: null
+    references:
+      - source: "DPDP Act 2023"
+        clause: "Section 27"

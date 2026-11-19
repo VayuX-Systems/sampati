@@ -1,0 +1,48 @@
+# SPDX-License-Identifier: Apache-2.0
+# DPDP Notice and Consent Controls
+
+- id: CTRL-DPDP-NC-001
+  title: "Notice Provided at Time of Consent"
+  description: "A clear, plain-language notice is provided to the Data Principal at the time of seeking consent, containing all required elements per Section 5 of the DPDP Act."
+  category: "Notice and Consent"
+  guidance: |
+    The notice must include:
+    - Categories of personal data to be processed
+    - Purpose of processing
+    - Rights of the Data Principal (access, correction, erasure, grievance, nomination)
+    - How to contact the Data Protection Officer or grievance officer
+    - Whether a Consent Manager is used
+    - Retention period or criteria
+
+- id: CTRL-DPDP-NC-002
+  title: "Consent is Free, Specific, Informed, and Unambiguous"
+  description: "Consent is obtained through a clear affirmative act, not through pre-ticked boxes or implied consent."
+  category: "Notice and Consent"
+  guidance: |
+    Consent must be:
+    - Freely given (no coercion)
+    - Specific to each purpose
+    - Informed (notice provided)
+    - Unambiguous (clear affirmative action)
+    - Documented with timestamp
+
+- id: CTRL-DPDP-NC-003
+  title: "Consent Withdrawal Mechanism"
+  description: "Data Principals can withdraw consent as easily as they gave it, through an accessible mechanism."
+  category: "Notice and Consent"
+  guidance: |
+    The withdrawal mechanism must be:
+    - Equally accessible as the consent mechanism
+    - Effective within a reasonable time
+    - Not result in detriment to the Data Principal
+    - Documented with timestamp
+
+- id: CTRL-DPDP-NC-004
+  title: "Consent Manager Integration"
+  description: "Where a Consent Manager is used, integration is functional and consent records are synchronised."
+  category: "Notice and Consent"
+  guidance: |
+    Verify:
+    - Consent Manager is registered with the Board
+    - Consent records from the Consent Manager are reflected in the Data Fiduciary's systems
+    - Withdrawals via Consent Manager are honoured

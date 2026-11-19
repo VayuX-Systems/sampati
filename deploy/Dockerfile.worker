@@ -1,0 +1,67 @@
+# SPDX-License-Identifier: Apache-2.0
+# Sampati Worker Docker image - Multi-stage build using Chainguard Python
+
+# Build stage
+FROM cgr.dev/chainguard/python:latest-dev AS builder
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /app
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+COPY apps/worker/pyproject.toml apps/worker/README.md ./apps/worker/
+COPY packages/core-domain/pyproject.toml packages/core-domain/README.md ./packages/core-domain/
+COPY packages/rules-engine/pyproject.toml packages/rules-engine/README.md ./packages/rules-engine/
+COPY packages/ledger/pyproject.toml packages/ledger/README.md ./packages/ledger/
+COPY packages/plugin-host/pyproject.toml packages/plugin-host/README.md ./packages/plugin-host/
+COPY packages/extension-points/pyproject.toml packages/extension-points/README.md ./packages/extension-points/
+COPY packages/ui-kit/pyproject.toml packages/ui-kit/README.md ./packages/ui-kit/
+
+COPY apps/worker/src ./apps/worker/src
+COPY packages/core-domain ./packages/core-domain
+COPY packages/rules-engine ./packages/rules-engine
+COPY packages/ledger ./packages/ledger
+COPY packages/plugin-host ./packages/plugin-host
+COPY packages/extension-points ./packages/extension-points
+COPY packages/ui-kit ./packages/ui-kit
+
+# Fix ownership and permissions - need root to chown
+USER 0
+RUN chown -R nonroot:nonroot /app && chmod -R u+rwX /app
+USER nonroot
+
+# Create virtual environment
+RUN python -m venv /app/.venv
+ENV PATH="/app/.venv/bin:$PATH" \
+    VIRTUAL_ENV="/app/.venv"
+
+# Install dependencies into venv
+RUN uv pip install -e ./apps/worker[dev] \
+    -e ./packages/core-domain \
+    -e ./packages/rules-engine \
+    -e ./packages/ledger \
+    -e ./packages/plugin-host \
+    -e ./packages/extension-points \
+    -e ./packages/ui-kit
+
+# Production stage
+FROM cgr.dev/chainguard/python:latest AS production
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/app/.venv/bin:$PATH" \
+    VIRTUAL_ENV="/app/.venv"
+
+WORKDIR /app
+
+# Copy from builder - only need the venv directory
+COPY --from=builder --chown=nonroot:nonroot /app/.venv /app/.venv
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD python -c "import redis; r = redis.Redis.from_url('\$SAMPATI_REDIS_URL'); r.ping()" || exit 1
+
+CMD ["python", "-m", "sampati_worker"]

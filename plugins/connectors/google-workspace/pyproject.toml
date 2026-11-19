@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: Apache-2.0
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sampati-plugin-google-workspace"
+version = "1.0.0"
+description = "Google Workspace Connector for Sampati"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [{ name = "VayuX Systems", email = "dev@vayux.systems" }]
+requires-python = ">=3.12"
+dependencies = [
+    "sampati-sdk>=0.1.0",
+    "google-api-python-client>=2.100",
+    "google-auth>=2.23",
+    "httpx>=0.27",
+    "pydantic>=2.8",
+    "pydantic-settings>=2.3",
+]
+
+[project.scripts]
+google-workspace = "src.google_workspace:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["google_workspace*"]
+
+[tool.setuptools.package-dir]
+"" = "src"

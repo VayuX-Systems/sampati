@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: Apache-2.0
+# Code owners for Sampati Community Edition
+
+# Global owners
+* @VayuX-Systems/maintainers
+
+# Security-critical areas (require 2 approvals)
+/apps/api/src/sampati_api/middleware.py @VayuX-Systems/security
+/apps/api/src/sampati_api/database.py @VayuX-Systems/security
+/apps/api/src/sampati_api/errors.py @VayuX-Systems/security
+/packages/ledger/ @VayuX-Systems/security
+/packages/plugin-host/ @VayuX-Systems/security
+/packages/extension-points/ @VayuX-Systems/security
+/deploy/init-rls.sql @VayuX-Systems/security
+
+# Plugin ecosystem
+/packages/plugin-host/ @VayuX-Systems/plugin-team
+/spec/ @VayuX-Systems/plugin-team
+
+# Documentation
+/docs/ @VayuX-Systems/docs-team
+
+# CI/CD
+/.github/workflows/ @VayuX-Systems/platform-team
+/.github/dependabot.yml @VayuX-Systems/platform-team

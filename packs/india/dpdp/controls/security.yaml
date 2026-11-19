@@ -1,0 +1,71 @@
+# SPDX-License-Identifier: Apache-2.0
+# DPDP Security Safeguards Controls
+
+- id: CTRL-DPDP-SEC-001
+  title: "Technical and Organisational Security Measures"
+  description: "Appropriate technical and organisational measures are implemented to protect personal data against unauthorised access, alteration, disclosure, or destruction."
+  category: "Security Safeguards"
+  guidance: |
+    Measures should address:
+    - Encryption at rest (AES-256 or equivalent)
+    - Encryption in transit (TLS 1.2+)
+    - Access control (RBAC, least privilege)
+    - Multi-factor authentication for admin access
+    - Logging and monitoring
+    - Vulnerability management
+    - Incident response plan
+
+- id: CTRL-DPDP-SEC-002
+  title: "Encryption at Rest for Personal Data"
+  description: "All databases, file stores, and backups containing personal data are encrypted at rest using AES-256 or equivalent."
+  category: "Security Safeguards"
+  guidance: |
+    Verify:
+    - Database encryption (TDE or application-level)
+    - Object storage encryption (SSE-KMS or SSE-S3)
+    - Backup encryption
+    - Key management with rotation
+
+- id: CTRL-DPDP-SEC-003
+  title: "Encryption in Transit"
+  description: "All data in transit uses TLS 1.2+ with strong cipher suites."
+  category: "Security Safeguards"
+  guidance: |
+    Verify:
+    - TLS 1.2+ for all external connections
+    - Internal service-to-service mTLS
+    - Certificate management and rotation
+    - HSTS for web endpoints
+
+- id: CTRL-DPDP-SEC-004
+  title: "Access Control - Least Privilege and RBAC"
+  description: "Access to personal data follows least privilege principle with role-based access control."
+  category: "Security Safeguards"
+  guidance: |
+    Verify:
+    - Roles defined per job function
+    - Regular access reviews (quarterly)
+    - Prompt revocation on role change/termination
+    - Privileged access logging and approval
+
+- id: CTRL-DPDP-SEC-005
+  title: "Multi-Factor Authentication"
+  description: "Multi-factor authentication is enforced for all administrative access and remote access to systems processing personal data."
+  category: "Security Safeguards"
+  guidance: |
+    Verify:
+    - MFA for all admin accounts
+    - MFA for VPN/remote access
+    - MFA for cloud console access
+    - TOTP or WebAuthn (not SMS)
+
+- id: CTRL-DPDP-SEC-006
+  title: "Vulnerability Management"
+  description: "Regular vulnerability scanning and timely patching of systems processing personal data."
+  category: "Security Safeguards"
+  guidance: |
+    Verify:
+    - Monthly vulnerability scans
+    - Critical patches within 72 hours
+    - High patches within 30 days
+    - Asset inventory for scan coverage

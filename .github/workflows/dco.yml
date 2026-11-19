@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: Apache-2.0
+name: DCO Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  dco:
+    name: DCO Sign-off Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check DCO sign-off
+        run: |
+          # Check all commits in the PR for Signed-off-by trailer
+          COMMITS=$(git log --format="%H" origin/main..HEAD)
+          for commit in $COMMITS; do
+            if ! git log -1 --format="%B" "$commit" | grep -q "Signed-off-by:"; then
+              echo "::error::Commit $commit is missing DCO sign-off"
+              exit 1
+            fi
+          done
+          echo "All commits have DCO sign-off"
